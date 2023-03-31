@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CrmDBContext>(options => options.UseSqlite(builder.Configuration["SqliteConnection"]));
+builder.Services.AddScoped<ICrmRepo, CrmRepo>();
 
 var app = builder.Build();
 
