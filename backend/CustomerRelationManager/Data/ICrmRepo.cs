@@ -8,6 +8,7 @@ namespace CustomerRelationManager.Data
     {
         bool ValidLoginAdmin(string username, string passwordHash);
         bool ValidLoginUser(string username, string passwordHash);
+        UserLoginOutDto GetUserLoginOutDto(string username);
         bool AddNewAdmin(UserRegisterInDto userRegisterInDto);
         bool AddNewUser(UserRegisterInDto userRegisterInDto);
     }

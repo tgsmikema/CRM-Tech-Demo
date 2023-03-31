@@ -10,10 +10,9 @@ namespace CustomerRelationManager.Data
     public class CrmRepo : ICrmRepo
     {
         private readonly CrmDBContext _dbContext;
-
         public CrmRepo(CrmDBContext dbContext)
         {
-            dbContext = _dbContext;
+            _dbContext = dbContext;
         }
 
         public bool AddNewAdmin(UserRegisterInDto userRegisterInDto)
@@ -24,6 +23,28 @@ namespace CustomerRelationManager.Data
         public bool AddNewUser(UserRegisterInDto userRegisterInDto)
         {
             return addNewUserOrAdmin(userRegisterInDto, "user");
+        }
+
+        public UserLoginOutDto GetUserLoginOutDto(string username)
+        {
+            UserLogin userLogin = _dbContext.UserLogins.FirstOrDefault
+              (e => e.UserName == username);
+
+            if (userLogin == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new UserLoginOutDto
+                {
+                    Id = userLogin.Id,
+                    UserName = userLogin.UserName,
+                    UserType = userLogin.UserType,
+                    FirstName = userLogin.FirstName,
+                    LastName = userLogin.LastName
+                };
+            }
         }
 
         public bool ValidLoginAdmin(string username, string passwordHash)

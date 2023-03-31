@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CrmDBContext>(options => options.UseSqlite(builder.Configuration["SqliteConnection"]));
+builder.Services.AddDbContext<CrmDBContext>(options => options.UseSqlite(builder.Configuration["WebAPIConnection"]));
 builder.Services.AddScoped<ICrmRepo, CrmRepo>();
 
 //register an authentication scheme
