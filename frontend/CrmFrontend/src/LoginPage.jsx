@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, TextField, Grid, Typography, Box } from '@mui/material';
 import axios from "axios";
+import { Outlet, useNavigate } from 'react-router-dom';
+import { AppContext } from './AppContextProvider';
 
 const LoginPage = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+
+    const { login, setLogin } = useContext(AppContext);
+
+    const navigate = useNavigate();
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         axios({
             method:'get',
-            url: `https://localhost:8080/api/login`,
+            url: `${API_BASE_URL}/api/login`,
             auth: {
                 username: userName,
                 password: password
             }
         })
-        .then(function (response) {
-            console.log(response.data);
+        .then((response) => {
+            //console.log(response.data);
+            setLogin({...response.data, password: password});
+            navigate("/dashboard", {replace: true});
+
         })
         .catch(function (error) {
-            console.log(error);
+           navigate("error", {replace: true});
         });
     }
 
 
         return (
+            <>
             <Grid container spacing={2} justifyContent="center">
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Box mt={3} mb={3}>
@@ -49,6 +61,8 @@ const LoginPage = () => {
                     </form>
                 </Grid>
             </Grid>
+            <Outlet />
+            </>
         );
     };
 
