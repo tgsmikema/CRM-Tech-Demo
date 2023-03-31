@@ -50,8 +50,25 @@ namespace CustomerRelationManager.Controllers
 
         }
 
-        [HttpPost("register")]
-        public ActionResult userRegister2(UserRegisterInDto userRegisterInDto)
+        [HttpPost("registerUser")]
+        public ActionResult userRegister(UserRegisterInDto userRegisterInDto)
+        {
+            bool isRegisterSuccessful = _repository.AddNewUser(userRegisterInDto);
+
+            if (isRegisterSuccessful)
+            {
+                return Ok("User successfully registered.");
+            }
+            else
+            {
+                return Ok("Username not available. Please Try again.");
+            }
+        }
+
+        [Authorize(AuthenticationSchemes = "Authentication")]
+        [Authorize(Policy = "AdminOnly")]
+        [HttpPost("registerAdmin")]
+        public ActionResult adminRegister(UserRegisterInDto userRegisterInDto)
         {
             bool isRegisterSuccessful = _repository.AddNewAdmin(userRegisterInDto);
 
