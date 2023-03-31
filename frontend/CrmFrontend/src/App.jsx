@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router-dom';
+import './App.css';
 
 function App() {
 
   return (
-    <div className="App">
-      <p>Hello World!</p>
-    </div>
+    <Routes>
+      <Route path="/" element={undefined}>
+        
+      </Route>
+    </Routes>
   )
 }
 
