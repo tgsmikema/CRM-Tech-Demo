@@ -2,6 +2,7 @@
 using CustomerRelationManager.Data;
 using CustomerRelationManager.Dtos;
 using CustomerRelationManager.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CustomerRelationManager.Controllers
 {
@@ -17,6 +18,8 @@ namespace CustomerRelationManager.Controllers
         }
 
         [HttpGet("testing")]
+        [Authorize(AuthenticationSchemes = "Authentication")]
+        [Authorize(Policy = "AdminOnly")]
         public ActionResult testingFunction()
         {
             return Ok("Testing Endpoint!");
