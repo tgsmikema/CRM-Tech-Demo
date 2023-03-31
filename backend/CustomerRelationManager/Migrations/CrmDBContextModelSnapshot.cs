@@ -52,43 +52,6 @@ namespace CustomerRelationManager.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("CustomerRelationManager.Model.Task", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AssignedToCustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AssignedToUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CreatedByUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedDateAndTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("DueDateAndTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsTaskDone")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TaskDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TaskSummary")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tasks");
-                });
-
             modelBuilder.Entity("CustomerRelationManager.Model.UserLogin", b =>
                 {
                     b.Property<int>("Id")

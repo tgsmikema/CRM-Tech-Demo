@@ -31,26 +31,6 @@ namespace CustomerRelationManager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    TaskSummary = table.Column<string>(type: "TEXT", nullable: false),
-                    TaskDescription = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedDateAndTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    DueDateAndTime = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    IsTaskDone = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AssignedToUserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AssignedToCustomerId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserLogins",
                 columns: table => new
                 {
@@ -73,9 +53,6 @@ namespace CustomerRelationManager.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Tasks");
 
             migrationBuilder.DropTable(
                 name: "UserLogins");

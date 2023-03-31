@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerRelationManager.Migrations
 {
     [DbContext(typeof(CrmDBContext))]
-    [Migration("20230331032448_InitialCreate")]
+    [Migration("20230331223736_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -53,43 +53,6 @@ namespace CustomerRelationManager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("CustomerRelationManager.Model.Task", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AssignedToCustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AssignedToUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CreatedByUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedDateAndTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("DueDateAndTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsTaskDone")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TaskDescription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TaskSummary")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("CustomerRelationManager.Model.UserLogin", b =>
