@@ -5,9 +5,11 @@ using CustomerRelationManager.Model;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Cors;
 
 namespace CustomerRelationManager.Controllers
 {
+    [EnableCors("_myAllowSpecificOrigins")]
     [Route("api")]
     [ApiController]
     public class CrmController : Controller
@@ -29,7 +31,7 @@ namespace CustomerRelationManager.Controllers
 
         [Authorize(AuthenticationSchemes = "Authentication")]
         [Authorize(Policy = "AllUsers")]
-        [HttpPost("login")]
+        [HttpGet("login")]
         public ActionResult<UserLoginOutDto> userLogin()
         {
             ClaimsIdentity ci = HttpContext.User.Identities.FirstOrDefault();
