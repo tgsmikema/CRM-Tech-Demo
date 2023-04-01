@@ -5,6 +5,8 @@ import HomePage from "./HomePage";
 import LoginPage from './LoginPage';
 import LoginError from './LoginError';
 import Dashboard from './Dashboard';
+import RegisterPage from './RegisterPage';
+import RegisterError from './RegisterError';
 
 function App() {
 
@@ -16,7 +18,14 @@ function App() {
         <Route path="login" element={<LoginPage />} >
           <Route path="error" element={<LoginError />} />
         </Route>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="registerUser" element={<RegisterPage userType={`user`}/>}>
+          <Route path="error" element={<RegisterError />} />
+        </Route>
+        <Route path="dashboard" element={<Dashboard />} >
+          <Route path="registerAdmin" element={<RegisterPage userType={`admin`}/>}>
+            <Route path="error" element={<RegisterError />} />
+          </Route>
+        </Route>
       </Route>
     </Routes>
   )

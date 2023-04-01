@@ -37,8 +37,7 @@ export default function HomePageCards() {
                         {Object.keys(login).length === 0
                         ? <>
                         <Button onClick={() => navigate("/login")} variant="contained" color="primary" size="large" sx={buttonMargin}>Login</Button> 
-                        <Button variant="contained" color="secondary" size="large" sx={buttonMargin}>Register</Button>
-                        <Button variant="contained" color="secondary" size="large" sx={{ ...buttonMargin, backgroundColor: "green" }}>Admin Register</Button>
+                        <Button onClick={() => navigate("/registerUser")} variant="contained" color="secondary" size="large" sx={buttonMargin}>Register</Button>
                         </>
                         : <Button onClick={() => navigate("/dashboard")} variant="contained" color="primary" size="large" sx={buttonMargin}>Dashboard</Button>}
                     </Container>
