@@ -32,7 +32,8 @@ const LoginPage = () => {
 
         })
         .catch(function (error) {
-           navigate("error", {replace: true});
+            console.log(error);
+            navigate("error", {replace: true});
         });
     }
 

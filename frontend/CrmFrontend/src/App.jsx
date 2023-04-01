@@ -7,6 +7,9 @@ import LoginError from './LoginError';
 import Dashboard from './Dashboard';
 import RegisterPage from './RegisterPage';
 import RegisterError from './RegisterError';
+import AddNewCustomer from "./AddNewCustomer";
+import SuccessMessage from './SuccessMessage';
+import GeneralError from './GeneralError';
 
 function App() {
 
@@ -24,6 +27,10 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} >
           <Route path="registerAdmin" element={<RegisterPage userType={`admin`}/>}>
             <Route path="error" element={<RegisterError />} />
+          </Route>
+          <Route path="addNewCustomer" element={<AddNewCustomer />}>
+            <Route path="success" element={<SuccessMessage />} />
+            <Route path="error" element={<GeneralError />} />
           </Route>
         </Route>
       </Route>

@@ -18,6 +18,10 @@ export default function Dashboard(){
         navigate("registerAdmin");
     }
 
+    const handleAddNewCustomer = () => {
+        navigate("addNewCustomer");
+    }
+
 
     return (
         <>
@@ -28,8 +32,8 @@ export default function Dashboard(){
             alignItems: "center",
         }}>
         <Typography  variant="h5" align="center">{`Hi ${login.firstName}, You are logged in as an `} <strong>{login.userType}</strong></Typography>
+        <Button onClick={handleAddNewCustomer}>Add New Customer</Button>
         <Button variant="contained" onClick={handleRegisterAdmin}>Register Admin Account</Button>
-
         <Button variant="contained" color="secondary" size="medium" onClick={handleLogout}>Logout</Button>
         </Container>
         <Outlet />

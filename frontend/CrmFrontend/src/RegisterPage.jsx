@@ -67,6 +67,7 @@ const RegisterPage = ({ userType }) => {
             navigate("/dashboard", {replace: true});
         })
         .catch(function (error) {
+            console.log(error);
             navigate("error", {replace: true});
         });
     }
@@ -74,7 +75,9 @@ const RegisterPage = ({ userType }) => {
 
         return (
             <>
-            <Grid container spacing={2} justifyContent="center">
+            <Grid container spacing={2} justifyContent="center" sx={{
+                marginTop : "100px"
+            }}>
                 <Grid item xs={12} sm={8} md={6} lg={4}>
                     <Box mt={3} mb={3}>
                         <Typography variant="h3" align="center">
