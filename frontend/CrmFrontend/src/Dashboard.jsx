@@ -21,9 +21,16 @@ export default function Dashboard(){
 
     return (
         <>
-        <Container>
-        <Button onClick={handleLogout}>{login.userName + login.password}</Button>
-        <Button onClick={handleRegisterAdmin}>Register Admin Account</Button>
+        <Container sx={{
+            display: 'flex',
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+        }}>
+        <Typography  variant="h5" align="center">{`Hi ${login.firstName}, You are logged in as an `} <strong>{login.userType}</strong></Typography>
+        <Button variant="contained" onClick={handleRegisterAdmin}>Register Admin Account</Button>
+
+        <Button variant="contained" color="secondary" size="medium" onClick={handleLogout}>Logout</Button>
         </Container>
         <Outlet />
         </>

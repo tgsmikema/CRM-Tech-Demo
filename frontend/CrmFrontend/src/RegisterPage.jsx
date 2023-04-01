@@ -64,7 +64,7 @@ const RegisterPage = ({ userType }) => {
         })
         .then((response) => {
             console.log(response.data);
-            //navigate("/dashboard", {replace: true});
+            navigate("/dashboard", {replace: true});
         })
         .catch(function (error) {
             navigate("error", {replace: true});
