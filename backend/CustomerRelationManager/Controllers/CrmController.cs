@@ -61,7 +61,7 @@ namespace CustomerRelationManager.Controllers
             }
             else
             {
-                return Ok("Username not available. Please Try again.");
+                return NotFound("Username not available. Please Try again.");
             }
         }
 
@@ -78,7 +78,7 @@ namespace CustomerRelationManager.Controllers
             }
             else
             {
-                return Ok("Username not available. Please Try again.");
+                return NotFound("Username not available. Please Try again.");
             }
         }
 
