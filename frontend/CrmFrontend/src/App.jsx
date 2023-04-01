@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate, useParams, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useParams, Navigate, Link } from 'react-router-dom';
 import './App.css';
 import HomePage from "./HomePage";
 import LoginPage from './LoginPage';
@@ -10,6 +10,7 @@ import RegisterError from './RegisterError';
 import AddNewCustomer from "./AddNewCustomer";
 import SuccessMessage from './SuccessMessage';
 import GeneralError from './GeneralError';
+import CustomerList from './CustomerList';
 
 function App() {
 
@@ -25,10 +26,15 @@ function App() {
           <Route path="error" element={<RegisterError />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />} >
+          <Route index element={<Navigate to="listCustomers"></Navigate>} />
           <Route path="registerAdmin" element={<RegisterPage userType={`admin`}/>}>
             <Route path="error" element={<RegisterError />} />
           </Route>
           <Route path="addNewCustomer" element={<AddNewCustomer />}>
+            <Route path="success" element={<SuccessMessage />} />
+            <Route path="error" element={<GeneralError />} />
+          </Route>
+          <Route path="listCustomers" element={<CustomerList />}>
             <Route path="success" element={<SuccessMessage />} />
             <Route path="error" element={<GeneralError />} />
           </Route>
