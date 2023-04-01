@@ -43,7 +43,7 @@ namespace CustomerRelationManager.Controllers
             }
             else if (ci.FindFirst("user") != null)
             {
-                userName = ci.FindFirst("vet").Value;
+                userName = ci.FindFirst("user").Value;
             }    
 
             return Ok(_repository.GetUserLoginOutDto(userName));
