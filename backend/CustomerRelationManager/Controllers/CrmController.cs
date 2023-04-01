@@ -22,8 +22,6 @@ namespace CustomerRelationManager.Controllers
         }
 
         [HttpGet("testing")]
-        [Authorize(AuthenticationSchemes = "Authentication")]
-        [Authorize(Policy = "AdminOnly")]
         public ActionResult testingFunction()
         {
             return Ok("Testing Endpoint!");
@@ -80,6 +78,79 @@ namespace CustomerRelationManager.Controllers
             {
                 return NotFound("Username not available. Please Try again.");
             }
+        }
+
+        [Authorize(AuthenticationSchemes = "Authentication")]
+        [Authorize(Policy = "AllUsers")]
+        [HttpGet("allCustomers")]
+        public ActionResult<IEnumerable<Customer>> retrieveAllCustomers()
+        {
+            UserLoginOutDto userInfo = receiveLoggedInUserInfo();
+
+            return Ok(_repository.GetCustomerOutDtoList(userInfo.Id, userInfo.UserType));
+
+        }
+
+        [Authorize(AuthenticationSchemes = "Authentication")]
+        [Authorize(Policy = "AllUsers")]
+        [HttpPost("addNewCustomer")]
+        public ActionResult addNewCustomer(CustomerInDto customerInDto)
+        {
+            UserLoginOutDto userInfo = receiveLoggedInUserInfo();
+
+            bool isAddingNewCustomerSuccessful = _repository.AddNewCustomer(customerInDto, userInfo.Id);
+
+            if (isAddingNewCustomerSuccessful)
+            {
+                return Ok("Customer Successfully Added");
+            }
+            else
+            {
+                return NotFound("Adding new Customer is failed, please try again");
+            }
+
+        }
+
+        [Authorize(AuthenticationSchemes = "Authentication")]
+        [Authorize(Policy = "AllUsers")]
+        [HttpPost("deleteCustomer")]
+        public ActionResult deleteCustomer(int customerId)
+        {
+            UserLoginOutDto userInfo = receiveLoggedInUserInfo();
+
+            bool isAddingNewCustomerSuccessful = _repository.DeleteCustomer(customerId);
+
+            if (isAddingNewCustomerSuccessful)
+            {
+                return Ok("Customer Successfully Deleted");
+            }
+            else
+            {
+                return NotFound("Deletion failed.. please try again.");
+            }
+
+        }
+
+
+
+        //----------------------------------Helper Methods Below------------------------------------------
+        private UserLoginOutDto receiveLoggedInUserInfo()
+        {
+            ClaimsIdentity ci = HttpContext.User.Identities.FirstOrDefault();
+
+            string userName = "";
+            if (ci.FindFirst("admin") != null)
+            {
+                userName = ci.FindFirst("admin").Value;
+            }
+            else if (ci.FindFirst("user") != null)
+            {
+                userName = ci.FindFirst("user").Value;
+            }
+
+            UserLoginOutDto userInfo = _repository.GetUserLoginOutDto(userName);
+
+            return userInfo;
         }
 
 

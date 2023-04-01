@@ -20,9 +20,61 @@ namespace CustomerRelationManager.Data
             return addNewUserOrAdmin(userRegisterInDto, "admin");
         }
 
+        public bool AddNewCustomer(CustomerInDto customerInDto, int userId)
+        {
+
+            DateTime now = DateTime.Now;
+
+            Customer customer = new Customer
+            {
+                FirstName = customerInDto.FirstName,
+                LastName = customerInDto.LastName,
+                EmailAddress = customerInDto.EmailAddress,
+                Description = customerInDto.Description,
+                PhoneNumber = customerInDto.PhoneNumber,
+                CreatedDateAndTime = now,
+                CreatedByUserId = userId
+            };
+
+            EntityEntry<Customer> e = _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+
+            return true;
+
+        }
+
         public bool AddNewUser(UserRegisterInDto userRegisterInDto)
         {
             return addNewUserOrAdmin(userRegisterInDto, "user");
+        }
+
+        public bool DeleteCustomer(int customerId)
+        {
+            Customer customer = _dbContext.Customers.FirstOrDefault(e => e.Id == customerId);
+
+            if (customer == null)
+            {
+                return false;
+            }
+
+            _dbContext.Customers.Remove(customer);
+            _dbContext.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<Customer> GetCustomerOutDtoList(int userId, string userType)
+        {
+            IEnumerable<Customer> customers;
+
+            if (userType == "admin")
+            {
+                customers = _dbContext.Customers.OrderBy(e => e.Id);
+            } else
+            {
+                customers = _dbContext.Customers.Where(e => e.CreatedByUserId == userId);
+            }
+            return customers;
         }
 
         public UserLoginOutDto GetUserLoginOutDto(string username)
