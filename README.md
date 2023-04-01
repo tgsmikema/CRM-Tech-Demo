@@ -4,6 +4,14 @@ In this Tech demo, the main theme is a simple customer relationship management a
 
 This tech demo consists two parts for the app to work together, the backend server side that handles data processing and authentication, which is written in C# with .NET framework, and the simple frontend renders the pages and calls API from the server is written in React with Vite.
 
+---
+
+### default testing login account:
+- (username: admin) (password: 123) (Admin Account)
+- (username: user1) (password: 123) (User Account)
+
+---
+
 ### How to run Backend:
 
 1) download DOTNET 6 SDK if you don't have it on your local machine from https://dotnet.microsoft.com/en-us/download and follow instruction to install it onto your local machine.
@@ -17,6 +25,8 @@ This tech demo consists two parts for the app to work together, the backend serv
 optional) The default ports for the backend is https://localhost:8080 or http://localhost:8081 (note the first one is https and second one is http, by default we use the first port with https.). If the port number is in clash with other ports on your machine, you can change this setting from this file located at `…/backend/CustomerRelationManager/Properties/launchSettings.json`. Modify line 17, change the port number from 8080 to other port number as you like. If you have made this change, be sure to save this file and build the project again refer to step 3 above.
 
 optional) Once the server is running, you can also test it's functionalities on swagger interface at: `https://localhost:8080/swagger/index.html`
+
+---
 
 ### How to run Frontend:
 
