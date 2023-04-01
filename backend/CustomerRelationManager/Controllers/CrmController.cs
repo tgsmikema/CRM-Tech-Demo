@@ -113,7 +113,7 @@ namespace CustomerRelationManager.Controllers
 
         [Authorize(AuthenticationSchemes = "Authentication")]
         [Authorize(Policy = "AllUsers")]
-        [HttpPost("deleteCustomer")]
+        [HttpGet("deleteCustomer")]
         public ActionResult deleteCustomer(int customerId)
         {
             UserLoginOutDto userInfo = receiveLoggedInUserInfo();
