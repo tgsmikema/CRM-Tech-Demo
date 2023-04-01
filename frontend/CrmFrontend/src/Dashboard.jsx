@@ -37,7 +37,7 @@ export default function Dashboard(){
         <Typography  variant="h5" align="center">{`Hi ${login.firstName}, You are logged in as an `} <strong>{login.userType}</strong></Typography>
         <Button onClick={handleAddNewCustomer}>Add New Customer</Button>
         <Button onClick={handleListCustomers}>Customers List</Button>
-        <Button variant="contained" onClick={handleRegisterAdmin}>Register Admin Account</Button>
+        {login.userType === "admin" ? <Button variant="contained" onClick={handleRegisterAdmin}>Register Admin Account</Button> : undefined}
         <Button variant="contained" color="secondary" size="medium" onClick={handleLogout}>Logout</Button>
         </Container>
         <Outlet />
