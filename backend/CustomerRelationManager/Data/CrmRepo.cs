@@ -36,7 +36,9 @@ namespace CustomerRelationManager.Data
                 CreatedByUserId = userId
             };
 
+            // adding a new UserLogin type data into the database
             EntityEntry<Customer> e = _dbContext.Customers.Add(customer);
+            // persist the change
             _dbContext.SaveChanges();
 
             return true;
@@ -57,7 +59,10 @@ namespace CustomerRelationManager.Data
                 return false;
             }
 
+            // delete a matching record from the database
             _dbContext.Customers.Remove(customer);
+
+            // persist the change
             _dbContext.SaveChanges();
 
             return true;
@@ -79,6 +84,7 @@ namespace CustomerRelationManager.Data
 
         public UserLoginOutDto GetUserLoginOutDto(string username)
         {
+            // find the first occurrance of the user/admin from the database and save it into a variable. With LINQ syntax.
             UserLogin userLogin = _dbContext.UserLogins.FirstOrDefault
               (e => e.UserName == username);
 
@@ -101,6 +107,7 @@ namespace CustomerRelationManager.Data
 
         public bool ValidLoginAdmin(string username, string passwordHash)
         {
+            // find the first occurrance of the user/admin from the database and save it into a variable. With LINQ syntax.
             UserLogin userLogin = _dbContext.UserLogins.FirstOrDefault
               (e => e.UserName == username && e.PasswordHash == passwordHash && e.UserType == "admin");
 
@@ -116,6 +123,7 @@ namespace CustomerRelationManager.Data
 
         public bool ValidLoginUser(string username, string passwordHash)
         {
+            // find the first occurrance of the user/admin from the database and save it into a variable. With LINQ syntax.
             UserLogin userLogin = _dbContext.UserLogins.FirstOrDefault
                (e => e.UserName == username && e.PasswordHash == passwordHash && e.UserType == "user");
 
@@ -131,6 +139,7 @@ namespace CustomerRelationManager.Data
 
         private bool addNewUserOrAdmin(UserRegisterInDto userRegisterInDto, string userType)
         {
+            // find the first occurrance of the user/admin from the database and save it into a variable. With LINQ syntax.
             UserLogin userCheck = _dbContext.UserLogins.FirstOrDefault(e => e.UserName == userRegisterInDto.UserName);
 
             if (userCheck == null)
@@ -144,7 +153,9 @@ namespace CustomerRelationManager.Data
                     LastName = userRegisterInDto.LastName
                 };
 
+                // adding a new UserLogin type data into the database
                 EntityEntry<UserLogin> e = _dbContext.UserLogins.Add(newUser);
+                // persist the data change
                 _dbContext.SaveChanges();
                 return true;
             }

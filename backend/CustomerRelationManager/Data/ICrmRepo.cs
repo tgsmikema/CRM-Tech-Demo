@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CustomerRelationManager.Data
 {
+    // interface for methods of Database operations.
     public interface ICrmRepo
     {
         bool ValidLoginAdmin(string username, string passwordHash);
