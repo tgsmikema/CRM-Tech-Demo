@@ -39,3 +39,9 @@ optional) Once the server is running, you can also test it's functionalities on 
 4) then enter `npm run dev` to start the frontend server.
 
 5) in your local browser, navigate to `http:localhost:5173/` to start browsing!
+
+---
+
+### Step-by-step tutorial on set up a new .NET project:
+
+plesae refer to the pdf file in the repository root folder to learn how to set up a brand new .NET web API project from scratch.
